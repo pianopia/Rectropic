@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1748747840226,
+      "tag": "0000_adorable_loners",
+      "breakpoints": true
+    }
+  ]
+}
