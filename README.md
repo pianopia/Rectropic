@@ -53,9 +53,9 @@ cd Rectropic
 cd server
 bun install
 
-# 環境変数の設定
+# 環境変数の設定（リポジトリには .env をコミットしない）
 cp .env.example .env
-# .envファイルを編集してデータベース接続情報を設定
+# .env を編集（TURSO_DATABASE_URL, TURSO_AUTH_TOKEN, JWT_SECRET など）
 
 # データベースマイグレーション
 bun run drizzle-kit generate:pg
