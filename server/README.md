@@ -126,7 +126,13 @@ docker buildx build -t asia-east1-docker.pkg.dev/frash-447004/rectropic-server/r
 docker push asia-east1-docker.pkg.dev/frash-447004/rectropic-server/rectropic-server:latest
 
 
-gcloud run deploy rectropic-server --image asia-east1-docker.pkg.dev/frash-447004/rectropic-server/rectropic-server:latest --platform managed --set-env-vars NODE_ENV=production --region=asia-east1
+# Turso / JWT は Dockerfile に書かず、Cloud Run で実行時注入する（server/.env.example を参照）
+gcloud run deploy rectropic-server \
+  --image asia-east1-docker.pkg.dev/frash-447004/rectropic-server/rectropic-server:latest \
+  --platform managed \
+  --region=asia-east1 \
+  --set-env-vars NODE_ENV=production,TURSO_DATABASE_URL=libsql://YOUR-DB.turso.io \
+  --set-secrets TURSO_AUTH_TOKEN=turso-auth-token:latest,JWT_SECRET=jwt-secret:latest
 
 gcloud run services update-traffic rectropic-server --to-latest --region=asia-east1
 
